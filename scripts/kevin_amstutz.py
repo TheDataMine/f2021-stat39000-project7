@@ -12,5 +12,7 @@ def main():
 
     print(dat.kevin_amstutz("tt5180504"))
 
+    print(dat.kevin_amstutz("tt0332280"))
+
 if __name__ == '__main__':
     main()

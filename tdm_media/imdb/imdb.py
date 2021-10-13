@@ -53,6 +53,9 @@ class IMDB:
         Args:
             title_id (str): The IMDB title id.
 
+        Raises:
+            ValueError: If the `title_id` does not have an episode.
+
         Returns:
             Tuple[str]: A tuple with episode names.
         """
@@ -66,6 +69,10 @@ class IMDB:
 
         # close the database connection
         conn.close()
+
+        # make sure the title_id has episodes, raise ValueError otherwise.
+        if not episodes:
+            raise ValueError(f"title_id: {title_id} does not contain episodes.")
 
         return episodes
 
