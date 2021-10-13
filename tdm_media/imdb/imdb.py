@@ -9,6 +9,7 @@ import aiosql
 import sqlite3
 import pandas as pd
 from pathlib import Path
+from typing import Tuple
 
 
 class IMDB:
@@ -42,6 +43,31 @@ class IMDB:
         conn.close()
 
         return rating
+
+    
+    def kevin_amstutz(self, title_id: str) -> Tuple[str]: 
+        """
+        Given an IMDB `title_id`, return names of the episodes, or
+        raise a ValueError if the title id doesn't have episodes.
+
+        Args:
+            title_id (str): The IMDB title id.
+
+        Returns:
+            Tuple[str]: A tuple with episode names.
+        """
+
+        # establish a database connection
+        conn = sqlite3.connect(self._db_path)
+
+        # get the rating
+        episodes = self.queries.kevin_amstutz_01(conn, title_id = title_id)
+        episodes = tuple(e[0] for e in episodes)
+
+        # close the database connection
+        conn.close()
+
+        return episodes
 
 
 if __name__ == '__main__':
