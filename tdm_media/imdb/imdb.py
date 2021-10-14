@@ -43,6 +43,27 @@ class IMDB:
         conn.close()
 
         return rating
+    
+    def Justin_Mathew(self, person_id: str) -> float:
+        """
+        Given an IMDB `person_id`, return the average rating for the corresponding in all episode, movie, short, etc they have appeared in.
+
+        Args:
+            person_id (str): The IMDB person id.
+
+        Returns:
+            float: The numeric average rating for the corresponding person in IMDB.
+        """
+        # establish a database connection
+        conn = sqlite3.connect(self._db_path)
+
+        # get the rating
+        rating = self.queries.Justin_Mathew_01(conn, person_id = person_id)
+
+        # close the database connection
+        conn.close()
+
+        return rating
 
     
     def kevin_amstutz(self, title_id: str) -> Tuple[str]: 
