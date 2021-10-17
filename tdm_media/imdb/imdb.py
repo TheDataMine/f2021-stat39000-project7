@@ -44,6 +44,28 @@ class IMDB:
 
         return rating
     
+    def Maxwell_Low(self, person_id: str, minimum_rating: float) -> str:
+        """
+        Given an IMDB `person-Id`, and a minimum rating,
+        return all titles that contain that person and are above the minimum rating
+
+        Args:
+            person_id (str): The IMDB person id
+
+        Returns:
+            str: The list of titles which contain the corresponding person and all episode, movie, short, etc they appeared in above a particular minimum rating
+        """
+        # establish a database connection
+        conn = sqlite3.connect(self._db_path)
+
+        # get the rating
+        titles = self.queries.Maxwell_Low_01(conn, person_id = person_id, minimum_rating = minimum_rating)
+
+        # close the database connection
+        conn.close()
+
+        return titles
+    
     def Justin_Mathew(self, person_id: str) -> float:
         """
         Given an IMDB `person_id`, return the average rating for the corresponding in all episode, movie, short, etc they have appeared in.
