@@ -18,3 +18,7 @@ WHERE
 -- name: Justin_Mathew_01$
 -- Get the rating of the movie/tv episode/short with the given id
 SELECT AVG(ratings.rating) FROM ratings,crew,titles WHERE crew.title_id = titles.title_id and ratings.title_id = titles.title_id and crew.person_id = :person_id
+
+-- name: Maxwell_Low_01$
+-- Get the title of the movie/tv/episode/short with the given person_id and above a minimum rating
+SELECT titles.primary_title FROM titles,crew,ratings WHERE titles.title_id = crew.title_id and titles.title_id = ratings.title_id and crew.person_id = :person_id and ratings.rating > :minimum_rating
