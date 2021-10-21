@@ -33,3 +33,12 @@ WHERE title_id in(
         episode_title_id FROM episodes
     WHERE
         show_title_id = :title_id);
+        
+-- name: elise_miller_01
+-- Get number of projects for a given name of an actor (person_name)
+
+SELECT 
+    COUNT(titles.title_id)
+FROM titles, people, crew
+WHERE people.name = :person_name AND crew.person_id = people.person_id AND titles.title_id = crew.title_id
+

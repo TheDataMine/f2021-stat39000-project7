@@ -141,6 +141,32 @@ class IMDB:
             raise ValueError(f"title_id: {title_id} does not contain episodes.")
 
         return episodes
+    
+    
+    def elise_miller(self, person_name:str) -> int:
+        
+        """
+        Given an IMDB actor name, return the number of projects they have been involved in. 
+        Counted by titles.title_id.
+
+        Args:
+            person_name (str): The actor name.
+
+
+        Returns:
+            int: The number of projects the actor has been involved in.
+        """
+            
+        # establish a database connection
+        conn = sqlite3.connect(self._db_path)
+
+        # get the rating
+        value = self.queries.elise_miller_01(conn, person_name = person_name)
+
+        # close the database connection
+        conn.close()
+        
+        return value[0][0]
 
 
 if __name__ == '__main__':
