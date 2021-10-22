@@ -42,3 +42,17 @@ SELECT
 FROM titles, people, crew
 WHERE people.name = :person_name AND crew.person_id = people.person_id AND titles.title_id = crew.title_id
 
+-- name: darren_iyer_01$
+-- Get the birth year for the given person id
+SELECT born FROM people WHERE person_id = :person_id;
+
+-- name: darren_iyer_02$
+-- Get the death year for the given person id
+SELECT died FROM people WHERE person_id = :person_id;
+
+-- name: darren_iyer_03$
+-- Get the number of tv series which aired between the given years
+SELECT COUNT(*) FROM (
+    SELECT * FROM titles WHERE type = 'tvSeries' limit 1000
+) tv
+WHERE premiered > :born AND ended < :died;
