@@ -44,6 +44,21 @@ class IMDB:
 
         return rating
     
+    def nicolas_newman(self, language: str) -> float:
+        """
+        Given an IMDB `language`, calculate the average raiting of all titles in that language
+        
+        Args:
+            language (str): The IMDB language code
+            
+        Returns:
+            float: the average raiting for all titles in the specified language
+        """
+        conn = sqlite3.connect(self._db_path)
+        raiting = self.queries.nicolas_newman_01(conn, language = language)
+        conn.close()
+        return raiting
+    
     def Maxwell_Low(self, person_id: str, minimum_rating: float) -> str:
         """
         Given an IMDB `person-Id`, and a minimum rating,

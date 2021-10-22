@@ -8,6 +8,7 @@ authors = ["Your Name <you@example.com>"]
 python = "~3.9"
 aiosql = "^3.3.1"
 pandas = "^1.3.3"
+thedatamine = "^0.1.3"
 
 [tool.poetry.dev-dependencies]
 

@@ -70,6 +70,14 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
+name = "thedatamine"
+version = "0.1.3"
+description = "Course package for Purdue University's integrative data science initiative, The Data Mine."
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[[package]]
 name = "typing-extensions"
 version = "3.10.0.2"
 description = "Backported and Experimental Type Hints for Python 3.5+"
@@ -80,7 +88,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "~3.9"
-content-hash = "43e37dc2677220b905c2b897b52b991bfbc88bbea4f78fb0cffb1b7d003c40cd"
+content-hash = "589dff4a5b3be156b5b7e5f47cdd698d441eb139105cb32143149167bbdc7565"
 
 [metadata.files]
 aiosql = [
@@ -157,6 +165,10 @@ pytz = [
 six = [
     {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
     {file = "six-1.16.0.tar.gz", hash = "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"},
+]
+thedatamine = [
+    {file = "thedatamine-0.1.3-py3-none-any.whl", hash = "sha256:ea1e33df1218e1218d4457fba108e59775a184e2e81ea0dae25f251cfd2f5d47"},
+    {file = "thedatamine-0.1.3.tar.gz", hash = "sha256:e2a7e9c0b5f9581b179a65195be756ec351544929a2553dfab6368111dc696e6"},
 ]
 typing-extensions = [
     {file = "typing_extensions-3.10.0.2-py2-none-any.whl", hash = "sha256:d8226d10bc02a29bcc81df19a26e56a9647f8b0a6d4a83924139f4a8b01f17b7"},

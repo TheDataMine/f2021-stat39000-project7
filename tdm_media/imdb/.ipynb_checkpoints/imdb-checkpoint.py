@@ -44,6 +44,43 @@ class IMDB:
 
         return rating
     
+    def nicolas_newman(self, language: str) -> float:
+        """
+        Given an IMDB `language`, calculate the average raiting of all titles in that language
+        
+        Args:
+            language (str): The IMDB language code
+            
+        Returns:
+            float: the average raiting for all titles in the specified language
+        """
+        conn = sqlite3.connect(self._db_path)
+        raiting = self.queries.nicolas_newman_01(conn, language = language)
+        conn.close()
+        return raiting
+    
+    def Maxwell_Low(self, person_id: str, minimum_rating: float) -> str:
+        """
+        Given an IMDB `person-Id`, and a minimum rating,
+        return all titles that contain that person and are above the minimum rating
+
+        Args:
+            person_id (str): The IMDB person id
+
+        Returns:
+            str: The list of titles which contain the corresponding person and all episode, movie, short, etc they appeared in above a particular minimum rating
+        """
+        # establish a database connection
+        conn = sqlite3.connect(self._db_path)
+
+        # get the rating
+        titles = self.queries.Maxwell_Low_01(conn, person_id = person_id, minimum_rating = minimum_rating)
+
+        # close the database connection
+        conn.close()
+
+        return titles
+    
     def robert_sego(self, title_id: str) -> float:
         """
         Given an IMDB 'title_id', return average rating for all episodes, movies, 

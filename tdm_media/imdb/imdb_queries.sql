@@ -33,3 +33,14 @@ WHERE title_id in(
         episode_title_id FROM episodes
     WHERE
         show_title_id = :title_id);
+
+-- name: nicolas_newman_01$
+-- Compute the average raiting for all titles of a given language
+SELECT 
+    AVG(ratings.rating) 
+FROM 
+    titles, ratings, akas
+WHERE
+    titles.title_id = akas.title_id AND
+    titles.title_id = ratings.title_id AND
+    akas.language = :language
