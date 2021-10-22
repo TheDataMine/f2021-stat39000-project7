@@ -214,6 +214,39 @@ class IMDB:
         conn.close()
 
         return value[0][0]
+    
+    def darren_iyer(self, person_id: str) -> int:
+        '''
+        Given a person's id, return the number of tv series that premiered
+        and ended in the span of the person's life. (The series started and 
+        ended within the person's lifespan)
+        
+        Args:
+            person_id (str): The person's id
+        
+        Raises:
+            ValueError: If the person is still alive
+        
+        Returns:
+            int: The number of tv series which aired in the span of the person
+        '''
+        
+        # establish connection
+        conn = sqlite3.connect(self._db_path)
+
+        # get the person tuple
+        born = self.queries.darren_iyer_01(conn, person_id = person_id)
+        died = self.queries.darren_iyer_02(conn, person_id = person_id)
+        
+        if died is None:
+            raise ValueError(f"person_id: {person_id} is still alive")
+        
+        # get the count of tv series
+        num = self.queries.darren_iyer_03(conn, born = born, died = died)
+        
+        conn.close()
+        
+        return num
 
 if __name__ == '__main__':
     import doctest

@@ -69,5 +69,17 @@ inner join
 ) as b
 on a.title_id = b.title_id
 
+-- name: darren_iyer_01$
+-- Get the birth year for the given person id
+SELECT born FROM people WHERE person_id = :person_id;
 
+-- name: darren_iyer_02$
+-- Get the death year for the given person id
+SELECT died FROM people WHERE person_id = :person_id;
 
+-- name: darren_iyer_03$
+-- Get the number of tv series which aired between the given years
+SELECT COUNT(*) FROM (
+    SELECT * FROM titles WHERE type = 'tvSeries' limit 1000
+) tv
+WHERE premiered > :born AND ended < :died;
