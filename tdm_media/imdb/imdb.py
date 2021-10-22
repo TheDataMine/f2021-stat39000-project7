@@ -109,7 +109,31 @@ class IMDB:
         conn.close()
 
         return rating
-
+    
+    def kenneth_cox(self, person_id: str, genre: str, miniumum_rating: float) -> int:
+        """
+        Given an IMDB `person_id`, project genre, and the projects miniumum 
+        rating it returns the total number of movies, episodes, series, 
+        shorts etc. that the person has appeared in with that genre.
+        
+        Args:
+            person_id (str): IMDB person id
+            genre(str): the genre that the projects must be a part of
+            minimum_rating(int): the minimum rating the project must have
+            
+        Returns:
+            int: the number of movies, episodes, series, shorts etc. that the person has appeared in with that genre.
+        """
+        # establish a database connection
+        conn = sqlite3.connect(self._db_path)
+        
+        # get the number of projects that the actor was in meeting the given critera
+        number = self.queries.kenneth_cox_01(conn, person_id = person_id, genre = '%' + genre + '%', miniumum_rating = miniumum_rating)
+        
+        #close the database connection
+        conn.close()
+        
+        return number[0][0]
     
     def kevin_amstutz(self, title_id: str) -> Tuple[str]: 
         """

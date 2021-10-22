@@ -42,3 +42,10 @@ SELECT
 FROM titles, people, crew
 WHERE people.name = :person_name AND crew.person_id = people.person_id AND titles.title_id = crew.title_id
 
+-- name: kenneth_cox_01
+-- Get number of projects for a given actor id, genre, and is greater than or equal to the minimum rating
+
+SELECT
+    COUNT(titles.title_id)
+FROM titles, crew, ratings
+WHERE crew.person_id = :person_id AND titles.title_id = crew.title_id AND ratings.rating > :miniumum_rating AND titles.title_id = ratings.title_id AND titles.genres LIKE :genre;
