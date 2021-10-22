@@ -83,3 +83,15 @@ SELECT COUNT(*) FROM (
     SELECT * FROM titles WHERE type = 'tvSeries' limit 1000
 ) tv
 WHERE premiered > :born AND ended < :died;
+
+-- name: ben_moorman_01
+-- Get corresponding person_id from name
+SELECT person_id FROM people
+WHERE name = :person; 
+
+-- name: ben_moorman_02
+-- Get number of titles where both people worked together
+SELECT COUNT(title_id) FROM crew
+WHERE person_id = :person1_id AND title_id in(
+    SELECT title_id FROM crew
+    WHERE person_id = :person2_id);

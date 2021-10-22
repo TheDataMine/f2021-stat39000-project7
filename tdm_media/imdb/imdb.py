@@ -191,6 +191,46 @@ class IMDB:
         conn.close()
         
         return value[0][0]
+    
+    def ben_moorman(self, person_1: str, person_2: str) -> int:
+        """
+        Given two IMDB `person_id`, return the number of projects where both
+        people worked together on the project.
+
+        Args:
+            person_1 (str): Name of first person
+            person_2 (str): Name of second person
+
+        Raises:
+            ValueError: If names person_1 or person_2 cannot be matched to a person_id.
+
+        Returns:
+            int: the number of projects where person_1 and person_2 worked together
+        """
+        
+        conn = sqlite3.connect(self._db_path)
+        
+        person1_id = self.queries.ben_moorman_01(conn, person=person_1)
+        person2_id = self.queries.ben_moorman_01(conn, person=person_2)
+        
+        # make sure the title_id has episodes, raise ValueError otherwise.
+        if not person1_id:
+            raise ValueError(f"person_1: {person_1} cannot be found.")
+        else: person1_id = person1_id[0]
+
+        if not person2_id:
+            raise ValueError(f"person_2: {person_2} cannot be found.")
+        else: person2_id = person2_id[0]
+        
+        person1_id = person1_id[0]
+        person2_id = person2_id[0]
+        
+        value = self.queries.ben_moorman_02(conn, person1_id = person1_id, person2_id = person2_id)
+
+        # Close the database connection
+        conn.close()
+        
+        return value[0][0]
 
     def aidan_kaczanowski(self, person1:str, person2:str) -> int:
         """
