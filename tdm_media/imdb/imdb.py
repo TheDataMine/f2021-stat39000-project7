@@ -168,6 +168,28 @@ class IMDB:
         
         return value[0][0]
 
+    def aidan_kaczanowski(self, person1:str, person2:str) -> int:
+        """
+        Given the names of two IMDB actors, return the number of projects they worked
+        together on.
+
+        Args:
+            person1 (str): The name of the first actor
+            person2 (str): The name of the second actor
+        Returns:
+            int: The number of projects common between the two actors.
+        """
+        
+        # establish a database connection
+        conn = sqlite3.connect(self._db_path)
+
+        # get the number
+        value = self.queries.aidan_kaczanowski_01(conn, person1 = person1, person2 = person2)
+        
+        # close the database connection
+        conn.close()
+
+        return value[0][0]
 
 if __name__ == '__main__':
     import doctest

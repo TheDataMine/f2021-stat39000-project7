@@ -42,3 +42,26 @@ SELECT
 FROM titles, people, crew
 WHERE people.name = :person_name AND crew.person_id = people.person_id AND titles.title_id = crew.title_id
 
+--name: aidan_kaczanowski_01
+-- Get the number of titles in common between 2 actors
+
+select 
+  count(distinct a.title_id)
+from 
+(
+  select title_id from crew
+  left join people
+    on people.person_id = crew.person_id
+  where name = :person1
+) as a
+inner join
+(
+  select title_id from crew
+  left join people
+    on people.person_id = crew.person_id
+  where name = :person2
+) as b
+on a.title_id = b.title_id
+
+
+
