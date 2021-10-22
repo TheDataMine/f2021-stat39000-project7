@@ -324,6 +324,30 @@ class IMDB:
         
         return num
 
+    
+    def laura_humphrey(self, date_premiered: int, min_rating: float) -> str:
+        
+        """
+        Given an IMBD 'premiered' year and a minimum rating, return all titles that premiered that year above a given rating.
+        
+        Args:
+            date_premiered (int): the year the title premiered.
+            min_rating (float): the minimum rating for the titles returned. 
+            
+        Returns:
+            str: A string of all titles premiered the given year equal to or above the given rating. 
+        """
+        # establish a database connection
+        conn = sqlite3.connect(self._db_path)
+        
+        # get the rating
+        premiere_titles = self.queries.laura_humphrey_01(conn, date_premiered = date_premiered, min_rating = min_rating)
+
+        # close the database connection
+        conn.close()
+        
+        return premiere_titles
+    
 if __name__ == '__main__':
     import doctest
     doctest.testmod()

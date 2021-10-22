@@ -109,3 +109,6 @@ WHERE
 -- name: Noah_Barker_01$
 -- Get the title of the movies, episodes, etc with an IMDB rating within the given range
 SELECT titles.primary_title FROM titles,ratings WHERE ratings.title_id=titles.title_id and ratings.rating >=:min_rating and ratings.rating<=:max_rating;
+
+-- name: laura_humphrey_01
+SELECT titles.primary_title FROM titles, ratings WHERE titles.premiered = :date_premiered AND titles.title_id = ratings.title_id AND ratings.rating >= :min_rating
