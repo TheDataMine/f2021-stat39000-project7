@@ -36,7 +36,6 @@ WHERE title_id in(
         
 -- name: elise_miller_01
 -- Get number of projects for a given name of an actor (person_name)
-
 SELECT 
     COUNT(titles.title_id)
 FROM titles, people, crew
@@ -106,3 +105,7 @@ WHERE
     titles.title_id = akas.title_id AND
     titles.title_id = ratings.title_id AND
     akas.language = :language
+
+-- name: Noah_Barker_01$
+-- Get the title of the movies, episodes, etc with an IMDB rating within the given range
+SELECT titles.primary_title FROM titles,ratings WHERE ratings.title_id=titles.title_id and ratings.rating >=:min_rating and ratings.rating<=:max_rating;

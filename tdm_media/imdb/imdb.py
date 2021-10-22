@@ -198,7 +198,7 @@ class IMDB:
             
         # establish a database connection
         conn = sqlite3.connect(self._db_path)
-
+        
         # get the rating
         value = self.queries.elise_miller_01(conn, person_name = person_name)
 
@@ -206,6 +206,27 @@ class IMDB:
         conn.close()
         
         return value[0][0]
+        
+        
+    def noah_barker(self, min_rating: float, max_rating: float) -> str:
+        """
+        Given a minimum and maximum rating, return names of movies, episodes, etc.
+        that have a rating that falls within the given range
+
+        Args:
+            min_rating (float): the minimum rating you want to be included
+            max_rating (float): the maximum rating you want to be included
+
+        Returns:
+            str: A list of titles for movies, episodes, etc. that have a rating within the desired range
+        """
+        conn = sqlite3.connect(self._db_path)
+        
+        names = self.queries.Noah_Barker_01(conn, min_rating=min_rating, max_rating = max_rating)
+        conn.close()
+        
+        return names
+    
     
     def ben_moorman(self, person_1: str, person_2: str) -> int:
         """
