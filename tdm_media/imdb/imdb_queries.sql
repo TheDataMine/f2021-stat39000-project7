@@ -33,3 +33,7 @@ WHERE title_id in(
         episode_title_id FROM episodes
     WHERE
         show_title_id = :title_id);
+        
+-- name: raunak_srivastava_01$
+-- Get the lowest rating of a tv show given the title id
+SELECT MIN(ratings.rating) FROM ratings,titles,episodes WHERE ratings.title_id = titles.title_id and episodes.episode_title_id = ratings.title_id

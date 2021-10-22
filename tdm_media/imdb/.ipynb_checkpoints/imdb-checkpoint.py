@@ -44,6 +44,28 @@ class IMDB:
 
         return rating
     
+    def Maxwell_Low(self, person_id: str, minimum_rating: float) -> str:
+        """
+        Given an IMDB `person-Id`, and a minimum rating,
+        return all titles that contain that person and are above the minimum rating
+
+        Args:
+            person_id (str): The IMDB person id
+
+        Returns:
+            str: The list of titles which contain the corresponding person and all episode, movie, short, etc they appeared in above a particular minimum rating
+        """
+        # establish a database connection
+        conn = sqlite3.connect(self._db_path)
+
+        # get the rating
+        titles = self.queries.Maxwell_Low_01(conn, person_id = person_id, minimum_rating = minimum_rating)
+
+        # close the database connection
+        conn.close()
+
+        return titles
+    
     def robert_sego(self, title_id: str) -> float:
         """
         Given an IMDB 'title_id', return average rating for all episodes, movies, 
@@ -119,6 +141,28 @@ class IMDB:
             raise ValueError(f"title_id: {title_id} does not contain episodes.")
 
         return episodes
+    
+    def raunak_srivastava(self, title_id: str) -> float:
+        """
+        Given an IMDB `title_id`, return the minimum rated episode for that show.
+
+        Args:
+            title_id (str): The IMDB title id.
+
+        Returns:
+            float: The numeric minimum rating for the corresponding show in IMDB.
+        """
+        
+        # establish a database connection
+        conn = sqlite3.connect(self._db_path)
+
+        # get the rating
+        min_rating = self.queries.raunak_srivastava_01(conn, title_id = title_id)
+
+        # close the database connection
+        conn.close()
+
+        return min_rating
 
 
 if __name__ == '__main__':

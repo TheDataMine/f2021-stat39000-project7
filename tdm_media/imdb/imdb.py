@@ -141,6 +141,28 @@ class IMDB:
             raise ValueError(f"title_id: {title_id} does not contain episodes.")
 
         return episodes
+    
+    def raunak_srivastava(self, title_id: str) -> float:
+        """
+        Given an IMDB `title_id`, return the minimum rated episode for that show.
+
+        Args:
+            title_id (str): The IMDB title id.
+
+        Returns:
+            float: The numeric minimum rating for the corresponding show in IMDB.
+        """
+        
+        # establish a database connection
+        conn = sqlite3.connect(self._db_path)
+
+        # get the rating
+        min_rating = self.queries.raunak_srivastava_01(conn, title_id = title_id)
+
+        # close the database connection
+        conn.close()
+
+        return min_rating
 
 
 if __name__ == '__main__':
