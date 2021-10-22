@@ -33,3 +33,7 @@ WHERE title_id in(
         episode_title_id FROM episodes
     WHERE
         show_title_id = :title_id);
+
+-- name: Noah_Barker_01$
+-- Get the title of the movies, episodes, etc with an IMDB rating within the given range
+SELECT titles.primary_title FROM titles,ratings WHERE ratings.title_id=titles.title_id and ratings.rating >=:min_rating and ratings.rating<=:max_rating;
