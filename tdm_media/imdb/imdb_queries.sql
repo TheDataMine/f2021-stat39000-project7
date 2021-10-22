@@ -42,3 +42,14 @@ SELECT
 FROM titles, people, crew
 WHERE people.name = :person_name AND crew.person_id = people.person_id AND titles.title_id = crew.title_id
 
+-- name: ben_moorman_01
+-- Get corresponding person_id from name
+SELECT person_id FROM people
+WHERE name = :person; 
+
+-- name: ben_moorman_02
+-- Get number of titles where both people worked together
+SELECT COUNT(title_id) FROM crew
+WHERE person_id = :person1_id AND title_id in(
+    SELECT title_id FROM crew
+    WHERE person_id = :person2_id);
