@@ -323,7 +323,29 @@ class IMDB:
         conn.close()
         
         return num
+    
+    def veronica_fulbright(self, title_id: str) -> str:
+        """
+        Given an IMDB `title-Id`,
+        return first 10 crew members from the title id
 
+        Args:
+            title_id (str): The IMDB title id
+
+        Returns:
+            str: The list of crew members in the episode, movie, or short
+        """
+        # establish a database connection
+        conn = sqlite3.connect(self._db_path)
+
+        # get the genres
+        crew = self.queries.Veronica_Fulbright_01(conn, title_id = title_id)
+
+        # close the database connection
+        conn.close()
+
+        return crew
+    
 if __name__ == '__main__':
     import doctest
     doctest.testmod()
