@@ -95,3 +95,14 @@ SELECT COUNT(title_id) FROM crew
 WHERE person_id = :person1_id AND title_id in(
     SELECT title_id FROM crew
     WHERE person_id = :person2_id);
+
+-- name: nicolas_newman_01$
+-- Compute the average raiting for all titles of a given language
+SELECT 
+    AVG(ratings.rating) 
+FROM 
+    titles, ratings, akas
+WHERE
+    titles.title_id = akas.title_id AND
+    titles.title_id = ratings.title_id AND
+    akas.language = :language
