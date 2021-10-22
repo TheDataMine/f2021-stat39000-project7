@@ -113,3 +113,6 @@ SELECT titles.primary_title FROM titles,ratings WHERE ratings.title_id=titles.ti
 -- name: Veronica_Fulbright_01
 -- Get crew names and ids of episodes/shows given title id of show
 SELECT DISTINCT(people.person_id), people.name FROM titles,crew,ratings,people WHERE people.person_id = crew.person_id and crew.title_id = titles.title_id and titles.title_id = :title_id LIMIT 10
+
+-- name: laura_humphrey_01
+SELECT titles.primary_title FROM titles, ratings WHERE titles.premiered = :date_premiered AND titles.title_id = ratings.title_id AND ratings.rating >= :min_rating
