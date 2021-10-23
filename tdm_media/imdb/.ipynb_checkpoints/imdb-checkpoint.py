@@ -99,15 +99,7 @@ class IMDB:
     
     def trevor_teague(self, title_id: str) -> int:
         """
-        Given an IMDP title_id, returns the number of seasons the show ran.
-        Args:
-            title_id (str): The IMDB title id.
-
-        Raises:
-            ValueError: If the `title_id` does not have any season information.
-
-        Returns:
-            last_season (int): The number of seasons as an integer.
+        temp
         """
         # establish a database connection
         conn = sqlite3.connect(self._db_path)
